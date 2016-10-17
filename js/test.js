@@ -39,9 +39,43 @@ $("#arrow").on("click", function() {
 });
 
 //MINMAXSHIT
-$("")
+$("#btnsbet #max").on("click", function(){
+	$("#betcol #bet").val($("#betcol #bal").html());
+});
+
+$("#btnsbet #min").on("click", function(){
+	$("#betcol #bet").val("0.00000000");
+});
+
+$("#btnsbet #half").on("click", function(){
+	$("#betcol #bet").val(($("#betcol #bet").val()/2).toFixed(8));
+});
+
+$("#btnsbet #double").on("click", function(){
+	$("#betcol #bet").val(($("#betcol #bet").val()*2).toFixed(8));
+});
 
 
+//Winchance - Multiplier 
+var edge = 1/100;
+
+$("#betcol #winchance").on("keyup", function(){
+	var multiplier = $(this).val()*100;
+	var edgedmultiplier = (multiplier - multiplier*edge).toFixed(2);
+	console.log(multiplier);
+	console.log(edgedmultiplier);
+	
+	$("#betcol #payout").val(edgedwinchance);	
+});
+
+$("#betcol #payout").on("keyup", function(){
+	var winchance = 100/$(this).val();
+	var edgedwinchance = (winchance - winchance*edge).toFixed(2);
+	console.log(winchance);
+	console.log(edgedwinchance);
+	
+	$("#betcol #winchance").val(edgedwinchance);
+});
 
 //table bets
 $("#betcol #roll").on("click", function() {

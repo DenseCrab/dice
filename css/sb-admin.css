@@ -5,6 +5,11 @@
  */
 /* Global Styles */
 
+#balancepanel h2{
+	padding:0px;
+	margin:0px;
+}
+
 #game {
     display: none;
 }
