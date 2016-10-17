@@ -45,7 +45,7 @@ $("#betcol #roll").on("click", function(){
 		"<td>" + $("#betcol #bet").val() + "</td>" +
 		"<td>" + $("#betcol #payout").val() + "</td>" +
 		"<td>" + (($("#betcol #game").prop("checked") == true) ? "HI" : "LO") + "</td>" +
-		"<td>" + (Math.random() * (99.99 - 0.00) + 0.00).toFixed(2) + "</td>" +
+		"<td>" + (Math.random() * (99.99)).toFixed(2) + "</td>" +
 		"<td>" + "kwet" + "</td>" +
 		"</tr>"
 	)
