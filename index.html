@@ -56,28 +56,28 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        <a><i class="fa fa-fw fa-dashboard"></i> </a>
                     </li>
                     <li>
-                        <a><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                        <a><i class="fa fa-fw fa-bar-chart-o"></i> </a>
                     </li>
                     <li>
-                        <a><i class="fa fa-fw fa-table"></i> Tables</a>
+                        <a><i class="fa fa-fw fa-table"></i> </a>
                     </li>
                     <li>
-                        <a><i class="fa fa-fw fa-edit"></i> Forms</a>
+                        <a><i class="fa fa-fw fa-edit"></i> </a>
                     </li>
                     <li>
-                        <a><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
+                        <a><i class="fa fa-fw fa-desktop"></i>  </a>
                     </li>
                     <li>
-                        <a><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
+                        <a><i class="fa fa-fw fa-wrench"></i></a>
                     </li>
                     <li>
-                        <a><i class="fa fa-fw fa-file"></i> Blank Page</a>
+                        <a><i class="fa fa-fw fa-file"></i> </a>
                     </li>
                     <li>
-                        <a><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
+                        <a><i class="fa fa-fw fa-dashboard"></i> </a>
                     </li>
                 </ul>
             </div>
@@ -90,20 +90,78 @@
                 <!-- /.row -->
 
                 <div class="row">
-					<div class="col-lg-6">
+					<div id="betcol" class="col-lg-8">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+									<h3 class="panel-title"><i class="fa fa-money"></i> Bet</h3>
+							</div>	
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-xs-8">
+										<div class="row">
+											<div class="col-xs-6">
+												<div class="input-group">
+												  <input id="bet" type="text" class="form-control select-all-on-click" value="0.00000000" aria-describedby="basic-addon2">
+												  <span class="input-group-addon" id="basic-addon2">BTC</span>
+												</div>
+											</div>
+											<div class="col-xs-6">
+												<div class="btn-group" role="group" aria-label="...">
+												  <button type="button" class="btn btn-default">MIN</button>
+												  <button type="button" class="btn btn-default">1/2</button>
+												  <button type="button" class="btn btn-default">x2</button>
+												  <button type="button" class="btn btn-default">MAX</button>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-xs-6">
+												<div class="input-group">
+													<input id="winchance" type="text" class="form-control select-all-on-click numeric" value="50.00" aria-describedby="basic-addon2">
+													<span class="input-group-addon" id="basic-addon2">%</span>
+												</div>
+											</div>
+											<div class="col-xs-6">
+												<div class="input-group">											
+													<input id="payout" type="text" class="form-control select-all-on-click numeric" value="2" aria-describedby="basic-addon2">
+													<span class="input-group-addon" id="basic-addon2">x</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-4">
+										<div id="arrow">
+											<i class="fa fa-arrow-up" aria-hidden="true"></i>
+											<input type="checkbox" name="game" id="game" checked>
+										</div>
+									</div>
+								</div>
+
+								<button type="button" id="roll" class="btn btn-primary btn-lg btn-block">ROLL</button>
+
+							</div>
+						</div>
 					</div>
-                    <div class="col-lg-6" style="float=right">
+                    <div id="chatcol" class="col-lg-4">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-comment-o"></i> Chat</h3>
+                                <h3 class="panel-title">
+									<i class="fa fa-comment-o"></i> Chat
+									<div class="pull-right">
+										<span id="users" class="clickable">
+											<i class="fa fa-users"></i>
+										</span>
+									</div>
+								</h3>
+
                             </div>
                             <div class="panel-body">
-								<ul class="nav nav-tabs">
-									<li class="active"><a data-toggle="tab" href="#home">English</a></li>
-									<li><a data-toggle="tab" href="#menu1">Russian</a></li>
-									<li><a data-toggle="tab" href="#menu2">Dutch</a></li>
-									<li><a data-toggle="tab" href="#menu3">French</a></li>
-								</ul>
+								<div id="chatcol-chat" class="col-xs-12">
+									<ul class="nav nav-tabs">
+										<li class="active"><a data-toggle="tab" href="#home">English</a></li>
+										<li><a data-toggle="tab" href="#menu1">Rus</a></li>
+										<li><a data-toggle="tab" href="#menu3">French</a></li>
+									</ul>
 								
 								<div class="tab-content">
 									<div id="home" class="tab-pane fade in active">
@@ -160,7 +218,7 @@
 															<span class="glyphicon glyphicon-time"></span>12 mins ago</small>
 													</div>
 													<p>
-														RIOTTTTTTTTTTTCAPSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+														RIOTTTTTTT
 													</p>
 												</div>
 											</li>
@@ -171,7 +229,7 @@
 															<span class="glyphicon glyphicon-time"></span>12 mins ago</small>
 													</div>
 													<p>
-														RIOTTTTTTTTTTTCAPSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+														RIOTTTTT
 													</p>
 												</div>
 											</li>
@@ -182,7 +240,7 @@
 															<span class="glyphicon glyphicon-time"></span>12 mins ago</small>
 													</div>
 													<p>
-														RIOTTTTTTTTTTTCAPSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+														RIOT
 													</p>
 												</div>
 											</li>
@@ -193,7 +251,7 @@
 															<span class="glyphicon glyphicon-time"></span>12 mins ago</small>
 													</div>
 													<p>
-														RIOTTTTTTTTTTTCAPSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+														riot
 													</p>
 												</div>
 											</li>
@@ -216,11 +274,19 @@
 									</div>
 									<div id="menu2" class="tab-pane fade">
 									</div>
-									<div id="menu3" class="tab-pane fade">
-									</div>
 								</div>
 								
-                            </div>
+                            </div>	
+							<div id="chatcol-users" class="list-group invisible">
+								<h4>Users</h4>
+							  <a href="#" class="list-group-item">Cras</a>
+							  <a href="#" class="list-group-item">Dapibus</a>
+							  <a href="#" class="list-group-item">Morbi</a>
+							  <a href="#" class="list-group-item">Porta</a>
+							  <a href="#" class="list-group-item">Vestibulum</a>
+							</div> 					
+						</div>
+
 							<div class="panel-footer">
 								<div class="input-group">
 									<input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
@@ -232,8 +298,32 @@
 							</div>
                         </div>
                     </div>
-                </div>
-                <!-- /.row -->
+					
+					<ul class="nav nav-pills">
+						<li class="active"><a data-toggle="pill" href="#mybets">My bets</a></li>
+						<li><a data-toggle="pill" href="#HR">High rollers</a></li>
+						<li><a data-toggle="pill" href="#All">All bets</a></li>
+					</ul>
+					  
+					 <table class="table" id="bets" data-height="300">
+						   <thead>
+							  <tr>
+								 <th data-field="Bet-ID">Bet-ID</th>
+								 <th data-field="User">User</th>
+								 <th data-field="Time">Time</th>
+								 <th data-field="Bet">Bet</th>
+								 <th data-field="Payout">Payout</th>
+								 <th data-field="Game">Game</th>
+								 <th data-field="Roll">Roll</th>
+								 <th data-field="Profit">Profit</th>
+							  </tr>
+						  </thead>
+						  <tbody>
+						  
+						  </tbody>
+					   </table>
+
+
 
 
             </div>
@@ -245,17 +335,17 @@
     </div>
     <!-- /#wrapper -->
 
+	<!-- GSAP -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+	
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
+    <script src="js/numeric.js"></script>
+    <script src="js/test.js"></script>
+	
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="js/plugins/morris/raphael.min.js"></script>
-    <script src="js/plugins/morris/morris.min.js"></script>
-    <script src="js/plugins/morris/morris-data.js"></script>
-
 </body>
 
 </html>
