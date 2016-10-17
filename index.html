@@ -1,351 +1,306 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>SB Admin - Bootstrap Admin Template</title>
-
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
-
     <!-- Morris Charts CSS -->
     <link href="css/plugins/morris.css" rel="stylesheet">
-
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-</head>
-
-<body>
-
+  </head>
+  <body>
     <div id="wrapper">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">SB Admin</a>
-            </div>
-            <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-
-            </ul>
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                    <li class="active">
-                        <a><i class="fa fa-fw fa-dashboard"></i> </a>
-                    </li>
-                    <li>
-                        <a><i class="fa fa-fw fa-bar-chart-o"></i> </a>
-                    </li>
-                    <li>
-                        <a><i class="fa fa-fw fa-table"></i> </a>
-                    </li>
-                    <li>
-                        <a><i class="fa fa-fw fa-edit"></i> </a>
-                    </li>
-                    <li>
-                        <a><i class="fa fa-fw fa-desktop"></i>  </a>
-                    </li>
-                    <li>
-                        <a><i class="fa fa-fw fa-wrench"></i></a>
-                    </li>
-                    <li>
-                        <a><i class="fa fa-fw fa-file"></i> </a>
-                    </li>
-                    <li>
-                        <a><i class="fa fa-fw fa-dashboard"></i> </a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </nav>
-
-        <div id="page-wrapper">
-
-            <div class="container-fluid">
-                <!-- /.row -->
-
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">SB Admin</a>
+      </div>
+      <!-- Top Menu Items -->
+      <ul class="nav navbar-right top-nav">
+      </ul>
+      <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav side-nav">
+          <li class="active">
+            <a><i class="fa fa-fw fa-dashboard"></i> </a>
+          </li>
+          <li>
+            <a><i class="fa fa-fw fa-bar-chart-o"></i> </a>
+          </li>
+          <li>
+            <a><i class="fa fa-fw fa-table"></i> </a>
+          </li>
+          <li>
+            <a><i class="fa fa-fw fa-edit"></i> </a>
+          </li>
+          <li>
+            <a><i class="fa fa-fw fa-desktop"></i>  </a>
+          </li>
+          <li>
+            <a><i class="fa fa-fw fa-wrench"></i></a>
+          </li>
+          <li>
+            <a><i class="fa fa-fw fa-file"></i> </a>
+          </li>
+          <li>
+            <a><i class="fa fa-fw fa-dashboard"></i> </a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div id="page-wrapper">
+      <div class="container-fluid">
+        <!-- /.row -->
+        <div class="row">
+          <div id="betcol" class="col-lg-8">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-money"></i> Bet</h3>
+              </div>
+              <div class="panel-body">
                 <div class="row">
-					<div id="betcol" class="col-lg-8">
-						<div class="panel panel-primary">
-							<div class="panel-heading">
-									<h3 class="panel-title"><i class="fa fa-money"></i> Bet</h3>
-							</div>	
-							<div class="panel-body">
-								<div class="row">
-									<div class="col-xs-8">
-										<div class="row">
-											<div class="col-xs-6">
-												<div class="input-group">
-												  <input id="bet" type="text" class="form-control select-all-on-click" value="0.00000000" aria-describedby="basic-addon2">
-												  <span class="input-group-addon" id="basic-addon2">BTC</span>
-												</div>
-											</div>
-											<div class="col-xs-6">
-												<div class="btn-group" role="group" aria-label="...">
-												  <button type="button" class="btn btn-default">MIN</button>
-												  <button type="button" class="btn btn-default">1/2</button>
-												  <button type="button" class="btn btn-default">x2</button>
-												  <button type="button" class="btn btn-default">MAX</button>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-xs-6">
-												<div class="input-group">
-													<input id="winchance" type="text" class="form-control select-all-on-click numeric" value="50.00" aria-describedby="basic-addon2">
-													<span class="input-group-addon" id="basic-addon2">%</span>
-												</div>
-											</div>
-											<div class="col-xs-6">
-												<div class="input-group">											
-													<input id="payout" type="text" class="form-control select-all-on-click numeric" value="2" aria-describedby="basic-addon2">
-													<span class="input-group-addon" id="basic-addon2">x</span>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-xs-4">
-										<div id="arrow">
-											<i class="fa fa-arrow-up" aria-hidden="true"></i>
-											<input type="checkbox" name="game" id="game" checked>
-										</div>
-									</div>
-								</div>
-
-								<button type="button" id="roll" class="btn btn-primary btn-lg btn-block">ROLL</button>
-
-							</div>
-						</div>
-					</div>
-                    <div id="chatcol" class="col-lg-4">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">
-									<i class="fa fa-comment-o"></i> Chat
-									<div class="pull-right">
-										<span id="users" class="clickable">
-											<i class="fa fa-users"></i>
-										</span>
-									</div>
-								</h3>
-
-                            </div>
-                            <div class="panel-body">
-								<div id="chatcol-chat" class="col-xs-12">
-									<ul class="nav nav-tabs">
-										<li class="active"><a data-toggle="tab" href="#home">English</a></li>
-										<li><a data-toggle="tab" href="#menu1">Rus</a></li>
-										<li><a data-toggle="tab" href="#menu3">French</a></li>
-									</ul>
-								
-								<div class="tab-content">
-									<div id="home" class="tab-pane fade in active">
-										<ul class="chat">
-											<li class="left clearfix">
-												<div class="chat-body clearfix">
-													<div class="header">
-														<strong class="primary-font">UnixPunk</strong> <small class="pull-right text-muted">
-															<span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-													</div>
-													<p>
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-														dolor, quis ullamcorper ligula sodales.
-													</p>
-												</div>
-											</li>
-											<li class="left clearfix">
-													<div class="chat-body clearfix">
-													<div class="header">
-														<strong class="primary-font mine">Me</strong> <small class="pull-right text-muted">
-															<span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-													</div>
-													<p>
-														TIP ME 8btc
-													</p>
-												</div>
-											</li>
-											<li class="left clearfix">
-													<div class="chat-body clearfix">
-													<div class="header">
-														<strong class="primary-font">UnixPunk</strong> <small class="pull-right text-muted">
-															<span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-													</div>
-													<p>
-														STFU
-													</p>
-												</div>
-											</li>
-											<li class="left clearfix">
-													<div class="chat-body clearfix">
-													<div class="header">
-														<strong class="primary-font mine">Me </strong> <small class="pull-right text-muted">
-															<span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-													</div>
-													<p>
-														gtfo
-													</p>
-												</div>
-											</li>
-											<li class="left clearfix">
-													<div class="chat-body clearfix">
-													<div class="header">
-														<strong class="primary-font">UnixPunk</strong> <small class="pull-right text-muted">
-															<span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-													</div>
-													<p>
-														RIOTTTTTTT
-													</p>
-												</div>
-											</li>
-											<li class="left clearfix">
-													<div class="chat-body clearfix">
-													<div class="header">
-														<strong class="primary-font">UnixPunk</strong> <small class="pull-right text-muted">
-															<span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-													</div>
-													<p>
-														RIOTTTTT
-													</p>
-												</div>
-											</li>
-											<li class="left clearfix">
-													<div class="chat-body clearfix">
-													<div class="header">
-														<strong class="primary-font">UnixPunk</strong> <small class="pull-right text-muted">
-															<span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-													</div>
-													<p>
-														RIOT
-													</p>
-												</div>
-											</li>
-											<li class="left clearfix">
-													<div class="chat-body clearfix">
-													<div class="header">
-														<strong class="primary-font">UnixPunk</strong> <small class="pull-right text-muted">
-															<span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-													</div>
-													<p>
-														riot
-													</p>
-												</div>
-											</li>
-										</ul>
-									</div>
-									<div id="menu1" class="tab-pane fade">
-										<ul class="chat">
-											<li class="left clearfix">
-												<div class="chat-body clearfix">
-													<div class="header">
-														<strong class="primary-font">RusBoy99</strong> <small class="pull-right text-muted">
-															<span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-													</div>
-													<p>
-														cyka blyat 
-													</p>
-												</div>
-											</li>
-										</ul>
-									</div>
-									<div id="menu2" class="tab-pane fade">
-									</div>
-								</div>
-								
-                            </div>	
-							<div id="chatcol-users" class="list-group invisible">
-								<h4>Users</h4>
-							  <a href="#" class="list-group-item">Cras</a>
-							  <a href="#" class="list-group-item">Dapibus</a>
-							  <a href="#" class="list-group-item">Morbi</a>
-							  <a href="#" class="list-group-item">Porta</a>
-							  <a href="#" class="list-group-item">Vestibulum</a>
-							</div> 					
-						</div>
-
-							<div class="panel-footer">
-								<div class="input-group">
-									<input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-									<span class="input-group-btn">
-										<button class="btn btn-warning btn-sm" id="btn-chat">
-											Send</button>
-									</span>
-								</div>
-							</div>
+                  <div class="col-xs-8">
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <div class="input-group">
+                          <input id="bet" type="text" class="form-control select-all-on-click" value="0.00000000" aria-describedby="basic-addon2">
+                          <span class="input-group-addon" id="basic-addon2">BTC</span>
                         </div>
+                      </div>
+                      <div class="col-xs-6">
+                        <div id="btnsbet" class="btn-group" role="group" aria-label="...">
+                          <button id="min" type="button" class="btn btn-default">MIN</button>
+                          <button id="half" type="button" class="btn btn-default">1/2</button>
+                          <button id="double" type="button" class="btn btn-default">x2</button>
+                          <button id="max" type="button" class="btn btn-default">MAX</button>
+                        </div>
+                      </div>
                     </div>
-					
-					<ul class="nav nav-pills">
-						<li class="active"><a data-toggle="pill" href="#mybets">My bets</a></li>
-						<li><a data-toggle="pill" href="#HR">High rollers</a></li>
-						<li><a data-toggle="pill" href="#All">All bets</a></li>
-					</ul>
-					  
-					 <table class="table" id="bets" data-height="300">
-						   <thead>
-							  <tr>
-								 <th data-field="Bet-ID">Bet-ID</th>
-								 <th data-field="User">User</th>
-								 <th data-field="Time">Time</th>
-								 <th data-field="Bet">Bet</th>
-								 <th data-field="Payout">Payout</th>
-								 <th data-field="Game">Game</th>
-								 <th data-field="Roll">Roll</th>
-								 <th data-field="Profit">Profit</th>
-							  </tr>
-						  </thead>
-						  <tbody>
-						  
-						  </tbody>
-					   </table>
-
-
-
-
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <div class="input-group">
+                          <input id="winchance" type="text" class="form-control select-all-on-click numeric" value="50.00" aria-describedby="basic-addon2">
+                          <span class="input-group-addon" id="basic-addon2">%</span>
+                        </div>
+                      </div>
+                      <div class="col-xs-6">
+                        <div class="input-group">											
+                          <input id="payout" type="text" class="form-control select-all-on-click numeric" value="2" aria-describedby="basic-addon2">
+                          <span class="input-group-addon" id="basic-addon2">x</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-4">
+                    <div id="arrow">
+                      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                      <input type="checkbox" name="game" id="game" checked>
+                    </div>
+                  </div>
+                </div>
+                <button type="button" id="roll" class="btn btn-primary btn-lg btn-block">ROLL</button>
+              </div>
             </div>
-            <!-- /.container-fluid -->
-
+          </div>
+          <div id="chatcol" class="col-lg-4">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <i class="fa fa-comment-o"></i> Chat
+                  <div class="pull-right">
+                    <span id="users" class="clickable">
+                    <i class="fa fa-users"></i>
+                    </span>
+                  </div>
+                </h3>
+              </div>
+              <div class="panel-body">
+                <div id="chatcol-chat" class="col-xs-12">
+                  <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#eng">English</a></li>
+                    <li><a data-toggle="tab" href="#rus">Rus</a></li>
+                    <li><a data-toggle="tab" href="#fr">French</a></li>
+                  </ul>
+                  <div class="tab-content">
+                    <div id="eng" class="tab-pane fade in active">
+                      <ul class="chat">
+                        <li class="left clearfix">
+                          <div class="chat-body clearfix">
+                            <div class="header">
+                              <strong class="primary-font">UnixPunk</strong> <small class="pull-right text-muted">
+                              <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                            </div>
+                            <p>
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                              dolor, quis ullamcorper ligula sodales.
+                            </p>
+                          </div>
+                        </li>
+                        <li class="left clearfix">
+                          <div class="chat-body clearfix">
+                            <div class="header">
+                              <strong class="primary-font mine">Me </strong> <small class="pull-right text-muted">
+                              <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                            </div>
+                            <p>
+                              gtfo
+                            </p>
+                          </div>
+                        </li>
+                        <li class="left clearfix">
+                          <div class="chat-body clearfix">
+                            <div class="header">
+                              <strong class="primary-font">UnixPunk</strong> <small class="pull-right text-muted">
+                              <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                            </div>
+                            <p>
+                              RIOTTTTTTT
+                            </p>
+                          </div>
+                        </li>
+                        <li class="left clearfix">
+                          <div class="chat-body clearfix">
+                            <div class="header">
+                              <strong class="primary-font">UnixPunk</strong> <small class="pull-right text-muted">
+                              <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                            </div>
+                            <p>
+                              RIOTTTTT
+                            </p>
+                          </div>
+                        </li>
+                        <li class="left clearfix">
+                          <div class="chat-body clearfix">
+                            <div class="header">
+                              <strong class="primary-font">UnixPunk</strong> <small class="pull-right text-muted">
+                              <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                            </div>
+                            <p>
+                              RIOT
+                            </p>
+                          </div>
+                        </li>
+                        <li class="left clearfix">
+                          <div class="chat-body clearfix">
+                            <div class="header">
+                              <strong class="primary-font">UnixPunk</strong> <small class="pull-right text-muted">
+                              <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                            </div>
+                            <p>
+                              riot
+                            </p>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div id="rus" class="tab-pane fade">
+                      <ul class="chat">
+                        <li class="left clearfix">
+                          <div class="chat-body clearfix">
+                            <div class="header">
+                              <strong class="primary-font">RusBoy99</strong> <small class="pull-right text-muted">
+                              <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                            </div>
+                            <p>
+                              cyka blyat 
+                            </p>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div id="fr" class="tab-pane fade">
+                      <ul class="chat">
+                        <li class="left clearfix">
+                          <div class="chat-body clearfix">
+                            <div class="header">
+                              <strong class="primary-font">Pute</strong> <small class="pull-right text-muted">
+                              <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                            </div>
+                            <p>
+                              je suis une pute 
+                            </p>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div id="chatcol-users" class="list-group invisible">
+                  <h4>Users</h4>
+                  <a href="#" class="list-group-item">Cras</a>
+                  <a href="#" class="list-group-item">Dapibus</a>
+                  <a href="#" class="list-group-item">Morbi</a>
+                  <a href="#" class="list-group-item">Porta</a>
+                  <a href="#" class="list-group-item">Vestibulum</a>
+                </div>
+              </div>
+              <div class="panel-footer">
+                <div class="input-group">
+                  <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                  <span class="input-group-btn">
+                  <button class="btn btn-warning btn-sm" id="btn-chat">
+                  Send</button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ul class="nav nav-pills">
+            <li class="active"><a data-toggle="pill" href="#mybets">My bets</a></li>
+            <li><a data-toggle="pill" href="#HR">High rollers</a></li>
+            <li><a data-toggle="pill" href="#All">All bets</a></li>
+          </ul>
+          <table class="table" id="bets" data-height="300">
+            <thead>
+              <tr>
+                <th data-field="Bet-ID">Bet-ID</th>
+                <th data-field="User">User</th>
+                <th data-field="Time">Time</th>
+                <th data-field="Bet">Bet</th>
+                <th data-field="Payout">Payout</th>
+                <th data-field="Game">Game</th>
+                <th data-field="Roll">Roll</th>
+                <th data-field="Profit">Profit</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
         </div>
-        <!-- /#page-wrapper -->
-
+        <!-- /.container-fluid -->
+      </div>
+      <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->
-
-	<!-- GSAP -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
-	
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
     <script src="js/numeric.js"></script>
     <script src="js/test.js"></script>
-	
-
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-</body>
-
+  </body>
 </html>
