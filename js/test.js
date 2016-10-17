@@ -59,16 +59,18 @@ $("#btnsbet #double").on("click", function(){
 //Winchance - Multiplier 
 var edge = 1/100;
 
+$("#betcol #winchance").numeric();
 $("#betcol #winchance").on("keyup", function(){
-	var multiplier = $(this).val()*100;
+	var multiplier = 100/$(this).val(); 
 	var edgedmultiplier = (multiplier - multiplier*edge).toFixed(2);
 	console.log(multiplier);
 	console.log(edgedmultiplier);
 	
-	$("#betcol #payout").val(edgedwinchance);	
+	$("#betcol #multiplier").val(edgedmultiplier);	
 });
 
-$("#betcol #payout").on("keyup", function(){
+$("#betcol #multiplier").numeric();
+$("#betcol #multiplier").on("keyup", function(){
 	var winchance = 100/$(this).val();
 	var edgedwinchance = (winchance - winchance*edge).toFixed(2);
 	console.log(winchance);
@@ -76,6 +78,7 @@ $("#betcol #payout").on("keyup", function(){
 	
 	$("#betcol #winchance").val(edgedwinchance);
 });
+
 
 //table bets
 $("#betcol #roll").on("click", function() {
@@ -88,7 +91,7 @@ $("#betcol #roll").on("click", function() {
         "<td>" + "DenseCrab" + "</td>" +
         "<td>" + time + "</td>" +
         "<td>" + $("#betcol #bet").val() + "</td>" +
-        "<td>" + $("#betcol #payout").val() + "</td>" +
+        "<td>" + $("#betcol #payout").val() + "x</td>" +
         "<td>" + (($("#betcol #game").prop("checked") == true) ? "HI" : "LO") + "</td>" +
         "<td>" + (Math.random() * (99.99)).toFixed(2) + "</td>" +
         "<td>" + "kwet" + "</td>" +
