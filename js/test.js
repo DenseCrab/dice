@@ -39,8 +39,45 @@ $("#arrow").on("click", function() {
 });
 
 //MINMAXSHIT
-$("")
+$("#btnsbet #max").on("click", function(){
+	$("#betcol #bet").val($("#betcol #bal").html());
+});
 
+$("#btnsbet #min").on("click", function(){
+	$("#betcol #bet").val("0.00000000");
+});
+
+$("#btnsbet #half").on("click", function(){
+	$("#betcol #bet").val(($("#betcol #bet").val()/2).toFixed(8));
+});
+
+$("#btnsbet #double").on("click", function(){
+	$("#betcol #bet").val(($("#betcol #bet").val()*2).toFixed(8));
+});
+
+
+//Winchance - Multiplier 
+var edge = 1/100;
+
+$("#betcol #winchance").numeric();
+$("#betcol #winchance").on("keyup", function(){
+	var multiplier = 100/$(this).val(); 
+	var edgedmultiplier = (multiplier - multiplier*edge).toFixed(2);
+	console.log(multiplier);
+	console.log(edgedmultiplier);
+	
+	$("#betcol #multiplier").val(edgedmultiplier);	
+});
+
+$("#betcol #multiplier").numeric();
+$("#betcol #multiplier").on("keyup", function(){
+	var winchance = 100/$(this).val();
+	var edgedwinchance = (winchance - winchance*edge).toFixed(2);
+	console.log(winchance);
+	console.log(edgedwinchance);
+	
+	$("#betcol #winchance").val(edgedwinchance);
+});
 
 
 //table bets
@@ -54,7 +91,7 @@ $("#betcol #roll").on("click", function() {
         "<td>" + "DenseCrab" + "</td>" +
         "<td>" + time + "</td>" +
         "<td>" + $("#betcol #bet").val() + "</td>" +
-        "<td>" + $("#betcol #payout").val() + "</td>" +
+        "<td>" + $("#betcol #payout").val() + "x</td>" +
         "<td>" + (($("#betcol #game").prop("checked") == true) ? "HI" : "LO") + "</td>" +
         "<td>" + (Math.random() * (99.99)).toFixed(2) + "</td>" +
         "<td>" + "kwet" + "</td>" +
