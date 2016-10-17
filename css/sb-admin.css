@@ -52,7 +52,7 @@
 .chat {
     padding-top: 10px;
     list-style: none;
-	overflow-x: visible;
+    overflow-x: visible;
     overflow-y: scroll;
     word-wrap: break-word;
     margin: 0;
@@ -212,3 +212,4 @@ ul.alert-dropdown {
 .side-nav>li>ul>li>a:hover {
     color: #fff;
 }
+
