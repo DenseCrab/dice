@@ -21,6 +21,7 @@ function get_active_chat_tab() {
 }
 
 function chat_submit() {
+	// $("#server-information .table").append(make_chat_entry("DenseCrab", "Test NEW UI",""));
     var input = $("#btn-input").val();
     if (input === "")
         return;
@@ -55,8 +56,9 @@ chat_sock.onopen = function(){
 };
 
 function make_chat_entry(header, body, time) {
-    var item = '<li class="left clearfix"><div class="chat-body clearfix"><div class="header"><strong class="primary-font">' 
-	 + header + '</strong>' + (time !== undefined ? '<small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>' + time + '</small>' : '') + '</div>' + body + '</div></li>';
+    var item = '<tr class="chat-entry"><td class="time">' + (time !== undefined ? time : '') + '</td>' +
+	'<td class="usr">' + header + '</td>' +
+	'<td class="msg">' + body + '</td></tr>';
     return item;
 }
 
@@ -123,31 +125,28 @@ chat_sock.onmessage = function(evt) {
 };
 
 
-$("#users").on("click", function() {
-    if ($("#chatcol-users").hasClass("invisible")) {
-        TweenMax.to($("#chatcol-chat"), .5, {
-            width: "70%",
-            paddingRight: "2",
-            borderRightColor: "#337AB7",
-            onComplete: makevisible
-        });
-        TweenMax.to($("#chatcol-users"), .5, {
-            paddingLeft: "2"
-        });
-
-    } else {
-        TweenMax.to($("#chatcol-chat"), .5, {
-            width: "100%"
-        });
-        $("#chatcol-users").addClass("invisible").removeClass("col-xs-3");
-    }
+//Add chat-tab
+$("#add-tab #usrname").on("keyup", function(event){
+	if($(this).val() !== "")
+		$("#add-tab #add-user").removeClass("disabled");
+    else
+		$("#add-tab #add-user").addClass("disabled");
 });
 
-var makevisible = function() {
-    $("#chatcol-users").removeClass("invisible").addClass("col-xs-3");
+$("#add-tab #usrname").keypress(function(e) {
+    if(e.which == 13) 
+        $("#add-tab #add-user").trigger("click");
+     $("#add-tab #add-user").val("");
 
-};
+});
 
+
+$("#add-tab #add-user").on("click", function(){
+		var usernameinput = $("#add-tab #usrname");
+
+	$("#add-tab #added-users").prepend('<a href="#" class="list-group-item">' + usernameinput.val() +'</a>');
+	usernameinput.val("");
+});
 
 //SWITCH
 $("#arrow").on("click", function() {
@@ -214,10 +213,11 @@ $("#betcol #roll").on("click", function() {
         "<td>" + "DenseCrab" + "</td>" +
         "<td>" + time + "</td>" +
         "<td>" + $("#betcol #bet").val() + "</td>" +
-        "<td>" + $("#betcol #payout").val() + "x</td>" +
+        "<td>" + $("#betcol #multiplier").val() + "x</td>" +
         "<td>" + (($("#betcol #game").prop("checked") == true) ? "HI" : "LO") + "</td>" +
         "<td>" + (Math.random() * (99.99)).toFixed(2) + "</td>" +
         "<td>" + "kwet" + "</td>" +
         "</tr>"
     )
 });
+

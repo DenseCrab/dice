@@ -4,8 +4,44 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 /* Global Styles */
+.added-users .list-group-item{
+	background-image
+}
+.chatcol{
+	overflow: auto;
+	height:400px;
+	padding:0px;
+	margin:0px;
+}
+.userscol{
+	overflow: auto;
+	height:400px;
+	padding:0px;
+	margin:0px;
+}
+.tab-pane{
+	overflow:visible;
+	height:400px;
+	padding:0px;
+}
+
+.chat-entry .usr{
+	text-align:right;
+	color:#337AB7;
+	width:10%;
+}
+
+.chat-entry .msg{	
+	width:80%;
+}
+
+.chat-entry .time{
+
+	width:10%;
+}
+
 #chatcol-chat{
-	width:70%;
+	width:100%;
 }
 .nav-tabs{
 	padding-bottom:10px;
@@ -14,7 +50,6 @@
 	padding:0px;
 	margin:0px;
 }
-
 #game {
     display: none;
 }
@@ -36,51 +71,12 @@
 .row {
     margin-bottom: 20px;
 }
-#usercol {
-    padding: 0;
-    margin: 0;
-}
-#user-list {
-    height: 400px;
-}
 #chatcol {
     margin-right: 0;
     padding-right: 0;
 }
 .clickable {
     cursor: pointer;
-}
-.invisible {
-    display: none;
-}
-#users {
-    margin-top: -10px;
-}
-.mine {
-    color: #337AB7;
-}
-.chat {
-    padding-top: 10px;
-    list-style: none;
-    overflow-x: visible;
-    overflow-y: scroll;
-    word-wrap: break-word;
-    margin: 0;
-    padding: 0;
-    overflow-y: scroll;
-    height: 400px;
-}
-.chat li {
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px dotted #B3A9A9;
-}
-.chat li.right .chat-body {
-    margin-right: 60px;
-}
-.chat li .chat-body p {
-    margin: 0;
-    color: #777777;
 }
 .panel .slidedown .glyphicon,
 .chat .glyphicon {
