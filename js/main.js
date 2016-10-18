@@ -246,26 +246,24 @@ $("#btnsbet #double").on("click", function(){
 //Winchance - Multiplier 
 var edge = 1/100;
 
-$("#betcol #winchance").numeric();
-$("#betcol #winchance").on("keyup", function(){
-	var multiplier = 100/$(this).val(); 
-	var edgedmultiplier = (multiplier - multiplier*edge).toFixed(2);
-	console.log(multiplier);
-	console.log(edgedmultiplier);
-	
-	$("#betcol #multiplier").val(edgedmultiplier);	
-});
-
 $("#betcol #multiplier").numeric();
-$("#betcol #multiplier").on("keyup", function(){
-	var winchance = 100/$(this).val();
-	var edgedwinchance = (winchance - winchance*edge).toFixed(2);
-	console.log(winchance);
-	console.log(edgedwinchance);
-	
-	$("#betcol #winchance").val(edgedwinchance);
+$("#betcol #winchance").numeric();
+
+$("#betcol #winchance").on("keyup", function(){
+	$("#betcol #multiplier").val(calculateWinchanceMultiplier($(this).val()));	
 });
 
+$("#betcol #multiplier").on("keyup", function(){
+	$("#betcol #winchance").val(calculateWinchanceMultiplier($(this).val()));	
+});
+
+function calculateWinchanceMultiplier(input){
+	var wm = 100/input; 
+	var edgedwm = (wm - wm*edge).toFixed(2);
+	console.log(wm);
+	console.log(edgedwm);
+	return edgedwm;
+}
 
 //table bets
 $("#betcol #roll").on("click", function() {
