@@ -1,4 +1,4 @@
-var socket = new WebSocket('ws://localhost:9002');
+var chat_sock = new WebSocket('ws://localhost:9002');
 
 function htmlEncode(value){
   //create a in-memory div, set it's inner text(which jQuery automatically encodes)
@@ -14,33 +14,43 @@ function get_active_chat_tab() {
     var nav_tabs = $(".nav.nav-tabs");
     var active = nav_tabs.find(".active").attr('id');
     console.log(active);
+
     if (active === "server-information-tab")
         active = "";
     return active;
 }
 
-$("#btn-chat").click(
-    function() {
-        var input = $("#btn-input").val();
-        if (input === "")
-            return;
+function chat_submit() {
+    var input = $("#btn-input").val();
+    if (input === "")
+        return;
 
-        var active = get_active_chat_tab();
-        if (active !== "")
-            socket.send('{"send":{"to":"#' + active + '","msg":"' + input + '"}}');
-	$("#btn-input").val("");
+    var active = get_active_chat_tab();
+    if (active !== "")
+        chat_sock.send('{"send":{"to":"#' + active + '","msg":"' + input + '"}}');
+    $("#btn-input").val("");
+}
+
+$("#btn-chat").click(chat_submit);
+$("#btn-input").bind('keypress',
+    function(evt) {
+        var code = evt.keyCode || e.which;
+        if (code === 13)
+            chat_submit();
     }
 );
 
-socket.onopen = function(){
+chat_sock.onopen = function(){
     console.log("Connection established");
-    var token = localStorage.getItem('token');
-    console.log(token);
 
-    socket.send('{"auth":{"user":"TestClient","token":"' + token + '"}}');
+    var username = localStorage.getItem('username');
+    var token = localStorage.getItem('token');
+    //console.log(username, token);
+
+    chat_sock.send('{"auth":{"user":"' + username + '","token":"' + token + '"}}');
     var server_info = $("#server-information").find("ul");
 
-    var item = make_chat_entry("", "Authenticating as user TestClient.");
+    var item = make_chat_entry("", "Authenticating as user " + username + ".");
     server_info.append(item);
 };
 
@@ -64,7 +74,7 @@ function create_chat_message(input) {
     console.log(input);
 }
 
-socket.onmessage = function(evt) {
+chat_sock.onmessage = function(evt) {
     var msg = JSON.stringify(evt.data);
     var obj = JSON.parse(evt.data);
 
@@ -73,7 +83,7 @@ socket.onmessage = function(evt) {
     if (obj["auth"]) {
         var auth_res = obj["auth"]["success"] === true ? "success" : "failure";
         server_info.append(make_chat_entry("", "Authentication " + auth_res));
-        socket.send('{"join":{"channel":"#FightClub"}}');
+        chat_sock.send('{"join":{"channel":"#FightClub"}}');
     } else if (obj["join"]) {
         if (!obj["join"]["success"] === true) {
             server_info.append(make_chat_entry("", "Failed to join channel " + obj["join"]["channel"]));
