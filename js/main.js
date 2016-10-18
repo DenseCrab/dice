@@ -126,6 +126,18 @@ chat_sock.onmessage = function(evt) {
 
 
 //Add chat-tab
+
+//remove panel footer on click
+$("a[href='#add-tab']").on("click",function(){
+	$("#chatcol .panel-footer").addClass("invisible");
+});
+
+$("a[href!='#add-tab']").on("click",function(){
+	$("#chatcol .panel-footer").removeClass("invisible");
+});
+$("#add-tab #add-tab-btn").on("click",function(){
+	//add tab
+});
 $("#add-tab #usrname").on("keyup", function(event){
 	if($(this).val() !== "")
 		$("#add-tab #add-user").removeClass("disabled");
@@ -136,17 +148,17 @@ $("#add-tab #usrname").on("keyup", function(event){
 $("#add-tab #usrname").keypress(function(e) {
     if(e.which == 13) 
         $("#add-tab #add-user").trigger("click");
-     $("#add-tab #add-user").val("");
-
 });
 
-
 $("#add-tab #add-user").on("click", function(){
+	if(!$(this).hasClass("disabled")){
 		var usernameinput = $("#add-tab #usrname");
 
 	$("#add-tab #added-users").prepend('<a href="#" class="list-group-item">' + usernameinput.val() +'</a>');
-	usernameinput.val("");
+	usernameinput.val("").focus();
+}
 });
+
 
 //SWITCH
 $("#arrow").on("click", function() {
