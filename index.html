@@ -72,19 +72,21 @@
       <div class="container-fluid">
         <!-- /.row -->
         <div class="row">
-          <div id="betcol" class="col-lg-7">
+          <div id="balcol" class="col-lg-2">
             <div id="balancepanel" class="panel panel-primary">
               <div class="panel-body">
-                <h2>Balance: <span id="bal">4.45000000</span> BTC</h2>
+                <h5>Balance: <span id="bal">4.45000000</span> BTC</h5>
               </div>
-            </div>
-            <div class="panel panel-primary">
+			</div>
+			</div>
+            <div class="col-lg-5" id="betcol">
+			<div class="panel panel-primary">
               <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-money"></i> Bet</h3>
               </div>
               <div class="panel-body">
                 <div class="row">
-                  <div class="col-xs-8">
+                  <div class="col-xs-12">
                     <div class="row">
                       <div class="col-xs-6">
                         <div class="input-group">
@@ -116,17 +118,11 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-xs-4">
-                    <div id="arrow">
-                      <i class="fa fa-arrow-up" aria-hidden="true"></i>
-                      <input type="checkbox" name="game" id="game" checked>
-                    </div>
-                  </div>
                 </div>
                 <button type="button" id="roll" class="btn btn-primary btn-lg btn-block">ROLL</button>
               </div>
             </div>
-          </div>
+			</div>
           <div id="chatcol" class="col-lg-5">
             <div class="panel panel-primary">
               <div class="panel-heading">
@@ -138,8 +134,8 @@
                 <div id="chatcol-chat">
                   <ul class="nav nav-tabs">
                     <li id="server-information-tab" class="active"><a data-toggle="tab" href="#server-information">Server Info</a></li>
-                    <li><a data-toggle="tab" href="#fight-club">#FightClub</a></li>
-                    <li><a data-toggle="tab" href="#add-tab"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+                    <li id="fight-club-tab"><a data-toggle="tab" href="#chat-fight-club">#FightClub</a></li>
+                    <li id="add-tab-tab"><a data-toggle="tab" href="#add-tab"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
                   </ul>
                   <div class="tab-content">
                     <div id="server-information" class="tab-pane fade in active">
@@ -153,7 +149,7 @@
                         </table>
                       </div>
                     </div>
-                    <div id="fight-club" class="tab-pane fade">
+                    <div id="chat-fight-club" class="tab-pane fade">
                       <div class="col-xs-8 chatcol">
                         <table class="table">
                           <!-- <tr class="chat-entry"> -->
@@ -175,7 +171,7 @@
                       </div>
                     </div>
                     <div id="add-tab" class="tab-pane fade">
-                      <input type="text" class="form-control" placeholder="Chat name">
+                      <input id="chat-name" type="text" class="form-control" placeholder="Chat name">
                       <div class="input-group">
                         <input id="usrname" type="text" class="form-control" placeholder="Username">
                         <span class="input-group-btn">
@@ -186,6 +182,7 @@
 						<div id="added-users" class="list-group">
 						  <a href="#" class="list-group-item">DenseCrab</a>
 						</div>
+						<button type="button" id="add-tab-btn" class="btn btn-primary btn-lg btn-block">Add Tab</button>
                     </div>
                   </div>
                 </div>
