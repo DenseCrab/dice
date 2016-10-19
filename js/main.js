@@ -126,7 +126,7 @@ game_sock.onmessage = function(evt) {
         game_sock.send('{"roll":{"target":1998,"condition_high":true,"amount":1}}');
     } else if (obj["roll"]) {
         server_info.append(make_chat_entry("", msg));
-	//if (obj["roll"]["success"] === true)
+        //if (obj["roll"]["success"] === true)
         //    game_sock.send('{"roll":{"target":1998,"condition_high":true,"amount":1}}');
     } else {
         console.log("other", obj);
@@ -199,12 +199,12 @@ chat_sock.onmessage = function(evt) {
 
 
 //Add chat-tab
-var newtab= 1;
+var newtab = 1;
 $("#add-tab-tab").on("click", function() {
-	//add dummy tab
+    //add dummy tab
     $('#chatcol-chat .nav-tabs #add-tab-tab').before(make_chat_tab("new-tab-" + newtab));
     $('#chatcol-chat .tab-content').append(make_chat_body("new-tab-" + newtab));
-	newtab++;
+    newtab++;
 });
 
 $("a[href!='#add-tab']").on("click", function() {
@@ -234,24 +234,17 @@ $("#add-tab #add-user").on("click", function() {
 
 //close-tab
 $(document).on('click', "i.close-tab", function() {
-	//remove tab
-	$(this).parent().parent().remove();
-	//remove body
-	$($(this).parent().attr("href")).remove();
-	
-	activateTab('server-information');
+    //remove tab
+    $(this).parent().parent().remove();
+    //remove body
+    $($(this).parent().attr("href")).remove();
+
+    activateTab('server-information');
 });
 
-function activateTab(tab){
-  $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+function activateTab(tab) {
+    $('.nav-tabs a[href="#' + tab + '"]').tab('show');
 };
-
-
-//make-chat-tab
-// $('#add-tab-tab').on('click', function() {
-
-// });
-
 
 //SWITCH
 $("#arrow").on("click", function() {
@@ -291,13 +284,24 @@ var edge = 1 / 100;
 $("#betcol #multiplier").numeric();
 $("#betcol #winchance").numeric();
 
+var rollover_ = $('#rollover_');
+var rollunder_ = $('#rollunder_');
+calculateOverUnder($('#betcol #winchance').val());
+
 $("#betcol #winchance").on("keyup", function() {
     $("#betcol #multiplier").val(calculateWinchanceMultiplier($(this).val()));
+    calculateOverUnder($(this).val());
 });
 
 $("#betcol #multiplier").on("keyup", function() {
     $("#betcol #winchance").val(calculateWinchanceMultiplier($(this).val()));
+    calculateOverUnder($('#betcol #winchance').val());
 });
+
+function calculateOverUnder(winchance) {
+    rollover_.html(winchance);
+    rollunder_.html((99.99 - winchance).toFixed(2));
+}
 
 function calculateWinchanceMultiplier(input) {
     var wm = 100 / input;
@@ -308,7 +312,7 @@ function calculateWinchanceMultiplier(input) {
 }
 
 //table bets
-$("#betcol #roll").on("click", function() {
+$("#betcol #rollhi").on("click", function() {
     var dt = new Date();
     var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
 
@@ -319,10 +323,27 @@ $("#betcol #roll").on("click", function() {
         "<td>" + time + "</td>" +
         "<td>" + $("#betcol #bet").val() + "</td>" +
         "<td>" + $("#betcol #multiplier").val() + "x</td>" +
-        "<td>" + (($("#betcol #game").prop("checked") == true) ? "HI" : "LO") + "</td>" +
+        "<td>" + "<" + $('#rollover_').html() + "</td>" +
         "<td>" + (Math.random() * (99.99)).toFixed(2) + "</td>" +
         "<td>" + "kwet" + "</td>" +
         "</tr>"
     )
 });
 
+$("#betcol #rolllo").on("click", function() {
+    var dt = new Date();
+    var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+
+    $("#bets tbody").prepend(
+        "<tr>" +
+        "<td>" + Math.floor(Math.random() * 10000000) + 1 + "</td>" +
+        "<td>" + "DenseCrab" + "</td>" +
+        "<td>" + time + "</td>" +
+        "<td>" + $("#betcol #bet").val() + "</td>" +
+        "<td>" + $("#betcol #multiplier").val() + "x</td>" +
+        "<td>" + ">" + $('#rollunder_').html() + "</td>" +
+        "<td>" + (Math.random() * (99.99)).toFixed(2) + "</td>" +
+        "<td>" + "kwet" + "</td>" +
+        "</tr>"
+    )
+});
