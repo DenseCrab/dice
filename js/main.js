@@ -60,7 +60,7 @@ function make_chat_entry(header, body, time) {
 }
 
 function make_chat_tab(channel) {
-    var item = '<li id="' + channel + '"><a data-toggle="tab" href="#chat-' + channel + '">#' + channel + '</a></li>';
+    var item = '<li id="' + channel + '"><a data-toggle="tab" href="#chat-' + channel + '">#' + channel + '<i class="fa fa-times pull-right close-tab" aria-hidden="true"></i></a></li>';
     return item;
 }
 
@@ -229,6 +229,21 @@ $("#add-tab #add-user").on("click", function() {
         usernameinput.val("").focus();
     }
 });
+
+//close-tab
+$(document).on('click', "i.close-tab", function() {
+	//remove tab
+	$(this).parent().parent().remove();
+	//remove body
+	$($(this).parent().attr("href")).remove();
+	
+	activateTab('server-information');
+});
+
+function activateTab(tab){
+  $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+};
+
 
 //make-chat-tab
 $('#add-tab #add-tab-btn').on('click', function() {
