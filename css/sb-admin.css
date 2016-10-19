@@ -4,6 +4,12 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 /* Global Styles */
+
+/* TOOLTIP NAV */
+i.close-tab:hover{
+	color:red;
+	    cursor: pointer;
+}
 .added-users .list-group-item{
 	background-image
 }
@@ -139,6 +145,7 @@ body {
     padding-bottom: 15px;
     line-height: 20px;
     color: #999;
+	overflow:visible;
 }
 .top-nav>li>a:hover,
 .top-nav>li>a:focus,
