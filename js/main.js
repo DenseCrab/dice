@@ -199,10 +199,9 @@ chat_sock.onmessage = function(evt) {
 
 
 //Add chat-tab
-
-//remove panel footer on click
 var newtab= 1;
 $("#add-tab-tab").on("click", function() {
+	//add dummy tab
     $('#chatcol-chat .nav-tabs #add-tab-tab').before(make_chat_tab("new-tab-" + newtab));
     $('#chatcol-chat .tab-content').append(make_chat_body("new-tab-" + newtab));
 	newtab++;
