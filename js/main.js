@@ -124,6 +124,10 @@ game_sock.onmessage = function(evt) {
         var auth_res = obj["auth"]["success"] === true ? "success" : "failure";
         server_info.append(make_chat_entry("", "Authentication " + auth_res));
         game_sock.send('{"roll":{"target":1998,"condition_high":true,"amount":1}}');
+    } else if (obj["roll"]) {
+        server_info.append(make_chat_entry("", msg));
+	//if (obj["roll"]["success"] === true)
+        //    game_sock.send('{"roll":{"target":1998,"condition_high":true,"amount":1}}');
     } else {
         console.log("other", obj);
         var item = make_chat_entry("", msg, new Date().toLocaleString());
