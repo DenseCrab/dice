@@ -1,3 +1,4 @@
+var game_sock = new WebSocket('ws://localhost:9003');
 var chat_sock = new WebSocket('ws://localhost:9002');
 
 function htmlEncode(value) {
@@ -10,10 +11,18 @@ function htmlDecode(value) {
     return $('<div/>').html(value).text();
 }
 
+function get_console_tab() {
+    return $("#server-information .table");
+}
+
+function get_chat_tab(name) {
+    return $("#chat-" + name + " .table");
+}
+
 function get_active_chat_tab() {
     var nav_tabs = $(".nav.nav-tabs");
     var active = nav_tabs.find(".active").attr('id');
-    console.log(active);
+    console.log("get_active_chat_tab:", active);
 
     if (active === "server-information-tab")
         active = "";
@@ -27,8 +36,10 @@ function chat_submit() {
         return;
 
     var active = get_active_chat_tab();
-    if (active !== "")
+    if (active !== "") {
+        console.log(active, input);
         chat_sock.send('{"send":{"to":"#' + active + '","msg":"' + input + '"}}');
+    }
     $("#btn-input").val("");
 }
 
@@ -40,20 +51,6 @@ $("#btn-input").bind('keypress',
             chat_submit();
     }
 );
-
-chat_sock.onopen = function() {
-    console.log("Connection established");
-
-    var username = localStorage.getItem('username');
-    var token = localStorage.getItem('token');
-    //console.log(username, token);
-
-    chat_sock.send('{"auth":{"user":"' + username + '","token":"' + token + '"}}');
-    var server_info = $("#server-information").find("ul");
-
-    var item = make_chat_entry("", "Authenticating as user " + username + ".");
-    server_info.append(item);
-};
 
 function make_chat_entry(header, body, time) {
     var item = '<tr class="chat-entry"><td class="time">' + (time !== undefined ? time : '') + '</td>' +
@@ -76,11 +73,83 @@ function create_chat_message(input) {
     console.log(input);
 }
 
+function load_stored_settings() {
+    var settings = {
+        username: "",
+        token: ""
+    };
+
+    var username = localStorage.getItem('username');
+    if (username !== undefined)
+        settings["username"] = username;
+
+    var token = localStorage.getItem('token');
+    if (token !== undefined)
+        settings["token"] = token;
+
+    return settings;
+}
+
+var game_authed = false;
+var chat_authed = false;
+
+var settings = load_stored_settings();
+if (!game_authed && settings.username !== "" && settings.token !== "") {
+    //...
+}
+
+if (!chat_authed && settings.username !== "" && settings.token !== "") {
+    //...
+}
+
+game_sock.onopen = function() {
+    console.log("Connection to game server established");
+
+    game_sock.send('{"auth":{"user":"' + settings.username + '","token":"' + settings.token + '"}}');
+    var server_info = get_console_tab();
+
+    var item = make_chat_entry("", "Authenticating as user " + settings.username + " on game server.");
+    server_info.append(item);
+};
+
+game_sock.onmessage = function(evt) {
+    var msg = JSON.stringify(evt.data);
+    var obj = JSON.parse(evt.data);
+
+    console.log(msg);
+
+    var server_info = get_console_tab();
+
+    if (obj["auth"]) {
+        var auth_res = obj["auth"]["success"] === true ? "success" : "failure";
+        server_info.append(make_chat_entry("", "Authentication " + auth_res));
+        game_sock.send('{"roll":{"target":1998,"condition_high":true,"amount":1}}');
+    } else {
+        console.log("other", obj);
+        var item = make_chat_entry("", msg, new Date().toLocaleString());
+        server_info.append(item);
+    }
+};
+
+chat_sock.onopen = function() {
+    console.log("Connection to chat server established");
+
+    var username = localStorage.getItem('username');
+    var token = localStorage.getItem('token');
+    //console.log(username, token);
+
+    chat_sock.send('{"auth":{"user":"' + username + '","token":"' + token + '"}}');
+    var server_info = get_console_tab();
+
+    var item = make_chat_entry("", "Authenticating as user " + username + ".");
+    server_info.append(item);
+};
+
 chat_sock.onmessage = function(evt) {
     var msg = JSON.stringify(evt.data);
     var obj = JSON.parse(evt.data);
 
-    var server_info = $("#server-information").find("ul");
+    var server_info = get_console_tab();
 
     if (obj["auth"]) {
         var auth_res = obj["auth"]["success"] === true ? "success" : "failure";
@@ -111,7 +180,7 @@ chat_sock.onmessage = function(evt) {
             from = from.substr(1, from.length);
 
         var user = obj["msg"]["user"];
-        console.log(user);
+        console.log("incoming msg", from, user, msg);
         var chat_msg = obj["msg"]["msg"];
         var chat_entry = make_chat_entry('&lt;' + user + '&gt;&nbsp;', chat_msg);
         var chan = $("#chat-" + from).find("ul");
@@ -236,3 +305,4 @@ $("#betcol #roll").on("click", function() {
         "</tr>"
     )
 });
+
