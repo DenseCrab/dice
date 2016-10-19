@@ -4,57 +4,55 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 /* Global Styles */
-
 /* TOOLTIP NAV */
-i.close-tab:hover{
-	color:red;
-	    cursor: pointer;
-}
-.added-users .list-group-item{
-	background-image
-}
-.chatcol{
-	overflow: auto;
-	height:400px;
-	padding:0px;
-	margin:0px;
-}
-.userscol{
-	overflow: auto;
-	height:400px;
-	padding:0px;
-	margin:0px;
-}
-.tab-pane{
-	overflow:visible;
-	height:400px;
-	padding:0px;
-}
 
-.chat-entry .usr{
-	text-align:right;
-	color:#337AB7;
-	width:10%;
+.side-nav li:hover {
+    background-color: red !important;
 }
-
-.chat-entry .msg{	
-	width:80%;
+i.close-tab:hover {
+    color: red;
+    cursor: pointer;
 }
-
-.chat-entry .time{
-
-	width:10%;
+.added-users .list-group-item {
+    background-image
 }
-
-#chatcol-chat{
-	width:100%;
+.chatcol {
+    overflow: auto;
+    height: 400px;
+    padding: 0px;
+    margin: 0px;
 }
-.nav-tabs{
-	padding-bottom:10px;
+.userscol {
+    overflow: auto;
+    height: 400px;
+    padding: 0px;
+    margin: 0px;
 }
-#balancepanel h2{
-	padding:0px;
-	margin:0px;
+.tab-pane {
+    overflow: visible;
+    height: 400px;
+    padding: 0px;
+}
+.chat-entry .usr {
+    text-align: right;
+    color: #337AB7;
+    width: 10%;
+}
+.chat-entry .msg {
+    width: 80%;
+}
+.chat-entry .time {
+    width: 10%;
+}
+#chatcol-chat {
+    width: 100%;
+}
+.nav-tabs {
+    padding-bottom: 10px;
+}
+#balancepanel h2 {
+    padding: 0px;
+    margin: 0px;
 }
 #game {
     display: none;
@@ -145,7 +143,7 @@ body {
     padding-bottom: 15px;
     line-height: 20px;
     color: #999;
-	overflow:visible;
+    overflow: visible;
 }
 .top-nav>li>a:hover,
 .top-nav>li>a:focus,
@@ -225,4 +223,3 @@ ul.alert-dropdown {
 .side-nav>li>ul>li>a:hover {
     color: #fff;
 }
-
