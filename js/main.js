@@ -201,8 +201,11 @@ chat_sock.onmessage = function(evt) {
 //Add chat-tab
 
 //remove panel footer on click
-$("a[href='#add-tab']").on("click", function() {
-    $("#chatcol .panel-footer").addClass("invisible");
+var newtab= 1;
+$("#add-tab-tab").on("click", function() {
+    $('#chatcol-chat .nav-tabs #add-tab-tab').before(make_chat_tab("new-tab-" + newtab));
+    $('#chatcol-chat .tab-content').append(make_chat_body("new-tab-" + newtab));
+	newtab++;
 });
 
 $("a[href!='#add-tab']").on("click", function() {
@@ -246,10 +249,9 @@ function activateTab(tab){
 
 
 //make-chat-tab
-$('#add-tab #add-tab-btn').on('click', function() {
-    $('#chatcol-chat .nav-tabs #add-tab-tab').before(make_chat_tab($('#add-tab #chat-name').val()));
-    $('#chatcol-chat .tab-content').append(make_chat_body($('#add-tab #chat-name').val()));
-});
+// $('#add-tab-tab').on('click', function() {
+
+// });
 
 
 //SWITCH
