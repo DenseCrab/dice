@@ -5,7 +5,13 @@
  */
 /* Global Styles */
 /* TOOLTIP NAV */
-
+#table-head{
+	margin-bottom:0px;
+}
+#bets-table{
+	overflow-y:auto;
+	height:500px;
+}
 .side-nav li:hover {
     background-color: red !important;
 }

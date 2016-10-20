@@ -191,7 +191,7 @@
               <li><a data-toggle="pill" href="#HR">High rollers</a></li>
               <li><a data-toggle="pill" href="#All">All bets</a></li>
             </ul>
-            <table class="table" id="bets" data-height="300">
+            <table id="table-head" class="table" data-height="300">
               <thead>
                 <tr>
                   <th data-field="Bet-ID">Bet-ID</th>
@@ -204,9 +204,14 @@
                   <th data-field="Profit">Profit</th>
                 </tr>
               </thead>
+			</table>
+		
+			<div id="bets-table">
+            <table class="table" id="bets" data-height="300">
               <tbody>
               </tbody>
-            </table>
+			  </table>
+			</div>
           </div>
           <!-- /.container-fluid -->
         </div>
