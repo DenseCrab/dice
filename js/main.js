@@ -315,10 +315,11 @@ function calculateWinchanceMultiplier(input) {
 $("#betcol #rollhi").on("click", function() {
     var dt = new Date();
     var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-
+	var betid = Math.floor(Math.random() * 10000000) + 1;
+	
     $("#bets tbody").prepend(
-        "<tr>" +
-        "<td>" + Math.floor(Math.random() * 10000000) + 1 + "</td>" +
+        "<tr id='" + betid + "'></tr>" + 
+        "<td>" + betid + "</td>" +
         "<td>" + "DenseCrab" + "</td>" +
         "<td>" + time + "</td>" +
         "<td>" + $("#betcol #bet").val() + "</td>" +
@@ -333,10 +334,11 @@ $("#betcol #rollhi").on("click", function() {
 $("#betcol #rolllo").on("click", function() {
     var dt = new Date();
     var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-
+	var betid = Math.floor(Math.random() * 10000000) + 1;
+	
     $("#bets tbody").prepend(
-        "<tr>" +
-        "<td>" + Math.floor(Math.random() * 10000000) + 1 + "</td>" +
+        "<tr id='" + betid + "'></tr>" + 
+        "<td>" + betid + "</td>" +
         "<td>" + "DenseCrab" + "</td>" +
         "<td>" + time + "</td>" +
         "<td>" + $("#betcol #bet").val() + "</td>" +
@@ -347,3 +349,28 @@ $("#betcol #rolllo").on("click", function() {
         "</tr>"
     )
 });
+
+
+$('.navbar-brand').on("click", function(){
+	showNotification("info", "test");
+});
+
+//notification
+function showNotification(type, message){
+	$.notify({
+	// options
+	message: message, 
+	newest_on_top: true
+},{
+	// settings
+	type: type //success,danger,info, warning
+});
+}
+
+function removeFromChat(channel, id){
+	$('#' + channel  + ' #'+id).remove();
+}
+
+function removeFromBets(betid){
+	$('#bets-table #' + betid).remove();
+}
