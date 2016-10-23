@@ -114,10 +114,10 @@
                   </div>
                   <div class="row">
                     <div class="col-xs-6">
-                      <button type="button" id="rolllo" class="btn btn-primary btn-lg btn-block">ROLL HIGH <span id="rollunder_"></span></button>
+                      <button type="button" id="rollhi" class="btn btn-primary btn-lg btn-block">ROLL HIGH <span id="rollover_"></span></button>
                     </div>
                     <div class="col-xs-6">
-                      <button type="button" id="rollhi" class="btn btn-primary btn-lg btn-block">ROLL LOW <span id="rollover_"></span></button>
+                      <button type="button" id="rolllo" class="btn btn-primary btn-lg btn-block">ROLL LOW <span id="rollunder_"></span></button>
                     </div>
                   </div>
                 </div>
@@ -186,12 +186,13 @@
             </div>
           </div>
           <div class="col-lg-12">
+		  <div id="bets-table">
             <ul class="nav nav-pills">
               <li class="active"><a data-toggle="pill" href="#mybets">My bets</a></li>
               <li><a data-toggle="pill" href="#HR">High rollers</a></li>
               <li><a data-toggle="pill" href="#All">All bets</a></li>
             </ul>
-            <table id="table-head" class="table" data-height="300">
+            <table id="bets" class="table" data-height="300">
               <thead>
                 <tr>
                   <th data-field="Bet-ID">Bet-ID</th>
@@ -204,12 +205,9 @@
                   <th data-field="Profit">Profit</th>
                 </tr>
               </thead>
-			</table>
-			<div id="bets-table">
-            <table class="table" id="bets" data-height="300">
-              <tbody>
+			  <tbody>
               </tbody>
-			  </table>
+			</table>
 			</div>
           </div>
           <!-- /.container-fluid -->
@@ -217,6 +215,28 @@
         <!-- /#page-wrapper -->
       </div>
     </div>
+
+	<!-- MODAL -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+			<h4 class="modal-title" id="bet-modal-title">Modal title</h4>
+		  </div>
+		  <div class="modal-body">
+			...
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary">Save changes</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
     <!-- /#wrapper -->
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
