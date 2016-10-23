@@ -287,6 +287,7 @@ $("#betcol #winchance").numeric();
 var rollover_ = $('#rollover_');
 var rollunder_ = $('#rollunder_');
 calculateOverUnder($('#betcol #winchance').val());
+calculateWinchanceMultiplier($('#betcol #winchance').val());
 
 $("#betcol #winchance").on("keyup", function() {
     $("#betcol #multiplier").val(calculateWinchanceMultiplier($(this).val()));
@@ -299,8 +300,8 @@ $("#betcol #multiplier").on("keyup", function() {
 });
 
 function calculateOverUnder(winchance) {
-    rollover_.html(winchance);
-    rollunder_.html((99.99 - winchance).toFixed(2));
+    rollunder_.html(winchance);
+    rollover_.html((99.99 - winchance).toFixed(2));
 }
 
 function calculateWinchanceMultiplier(input) {
@@ -314,17 +315,17 @@ function calculateWinchanceMultiplier(input) {
 //table bets
 $("#betcol #rollhi").on("click", function() {
     var dt = new Date();
-    var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+    var time = dt.getHours() + ":" + dt.getMinutes();
 	var betid = Math.floor(Math.random() * 10000000) + 1;
 	
     $("#bets tbody").prepend(
-        "<tr id='" + betid + "'></tr>" + 
-        "<td>" + betid + "</td>" +
+        "<tr id='" + betid + "'>" + 
+        '<td><a class="open-modal clickable" data-toggle="modal" data-target="#myModal">' + betid + "</a></td>" +
         "<td>" + "DenseCrab" + "</td>" +
         "<td>" + time + "</td>" +
         "<td>" + $("#betcol #bet").val() + "</td>" +
         "<td>" + $("#betcol #multiplier").val() + "x</td>" +
-        "<td>" + "<" + $('#rollover_').html() + "</td>" +
+        "<td>" + "> " + $('#rollover_').html() + "</td>" +
         "<td>" + (Math.random() * (99.99)).toFixed(2) + "</td>" +
         "<td>" + "kwet" + "</td>" +
         "</tr>"
@@ -333,17 +334,17 @@ $("#betcol #rollhi").on("click", function() {
 
 $("#betcol #rolllo").on("click", function() {
     var dt = new Date();
-    var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+    var time = dt.getHours() + ":" + dt.getMinutes();
 	var betid = Math.floor(Math.random() * 10000000) + 1;
 	
     $("#bets tbody").prepend(
-        "<tr id='" + betid + "'></tr>" + 
-        "<td>" + betid + "</td>" +
+        "<tr id='" + betid + "'>" + 
+        '<td><a class="open-modal-bets clickable" data-toggle="modal" data-id="'+ betid + '" data-target="#myModal">' + betid + "</a></td>" +
         "<td>" + "DenseCrab" + "</td>" +
-        "<td>" + time + "</td>" +
+        "<td>"  + time  + "</td>" +
         "<td>" + $("#betcol #bet").val() + "</td>" +
         "<td>" + $("#betcol #multiplier").val() + "x</td>" +
-        "<td>" + ">" + $('#rollunder_').html() + "</td>" +
+        "<td>" + "< " + $('#rollunder_').html() + "</td>" +
         "<td>" + (Math.random() * (99.99)).toFixed(2) + "</td>" +
         "<td>" + "kwet" + "</td>" +
         "</tr>"
@@ -374,3 +375,8 @@ function removeFromChat(channel, id){
 function removeFromBets(betid){
 	$('#bets-table #' + betid).remove();
 }
+
+$(".open-modal-bets").click(function () {
+        $('#bet-modal-title').html("TEST");
+    });
+
