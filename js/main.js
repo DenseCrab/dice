@@ -1,6 +1,3 @@
-var game_sock = new WebSocket('ws://localhost:9003');
-var chat_sock = new WebSocket('ws://localhost:9002');
-
 function htmlEncode(value) {
     //create a in-memory div, set it's inner text(which jQuery automatically encodes)
     //then grab the encoded contents back out.  The div never exists on the page.
@@ -73,46 +70,103 @@ function create_chat_message(input) {
     console.log(input);
 }
 
+var demo_modes = {
+    local: { value: 0, name: "Local demo (Generated content)" },
+    production: { valie: 1, name: "Production demo ()" }
+};
+
+var config = {
+    // Generation configuration
+    demo_mode: null,
+
+    username: null,
+    token: null,
+
+    // Socket configuration
+    game_authed: false,
+    chat_authed: false,
+
+    game_sock: null,
+    chat_sock: null,
+};
+
 function load_stored_settings() {
     var settings = {
+        demo_mode: demo_modes.local,
         username: "",
         token: ""
     };
 
+    var mode = localStorage.getItem('demo_mode');
+    if (mode === "production") {
+        settings.demo_mode = demo_modes.production;
+    }
+
     var username = localStorage.getItem('username');
-    if (username !== undefined)
-        settings["username"] = username;
+    if (username !== null) {
+        settings.username = username;
+    }
 
     var token = localStorage.getItem('token');
-    if (token !== undefined)
-        settings["token"] = token;
+    if (token !== null) {
+        settings.token = token;
+    }
 
     return settings;
 }
 
-var game_authed = false;
-var chat_authed = false;
-
 var settings = load_stored_settings();
-if (!game_authed && settings.username !== "" && settings.token !== "") {
-    //...
+if (settings === null) {
+    console.log('unable to load stored settings');
+} else {
+    config.demo_mode = settings.demo_mode;
+    config.username = settings.username;
+    config.token = settings.token;
+
+    if (config.demo_mode === demo_modes.local) {
+        console.log('local demo enabled');
+
+        // Generation content
+        // ...
+
+    } else {
+        console.log('production demo enabled');
+
+        config.game_sock = new WebSocket('ws://localhost:9003');
+        config.chat_sock = new WebSocket('ws://localhost:9002');
+
+        if (!config.game_authed && config.username !== "" && config.token !== "") {
+            //...
+        }
+
+        if (!config.chat_authed && config.username !== "" && config.token !== "") {
+            //...
+        }
+    }
 }
 
-if (!chat_authed && settings.username !== "" && settings.token !== "") {
-    //...
+
+if (config.demo_mode === demo_modes.production) {
+
+    // set socket callbacks
+    config.game_sock.onopen = on_gamesock_open;
+    config.game_sock.onmessage = on_gamesock_message;
+
+    config.chat_sock.onopen = on_chatsock_open;
+    config.chat_sock.onmessage = on_chatsock_message;
 }
 
-game_sock.onopen = function() {
+function on_gamesock_open() {
     console.log("Connection to game server established");
 
-    game_sock.send('{"auth":{"user":"' + settings.username + '","token":"' + settings.token + '"}}');
+    config.game_sock.send('{"auth":{"user":"' + config.username + '","token":"' + config.token + '"}}');
     var server_info = get_console_tab();
 
     var item = make_chat_entry("", "Authenticating as user " + settings.username + " on game server.");
     server_info.append(item);
-};
+}
 
-game_sock.onmessage = function(evt) {
+function on_gamesock_message(evt) {
     var msg = JSON.stringify(evt.data);
     var obj = JSON.parse(evt.data);
 
@@ -123,7 +177,7 @@ game_sock.onmessage = function(evt) {
     if (obj["auth"]) {
         var auth_res = obj["auth"]["success"] === true ? "success" : "failure";
         server_info.append(make_chat_entry("", "Authentication " + auth_res));
-        game_sock.send('{"roll":{"target":1998,"condition_high":true,"amount":1}}');
+        config.game_sock.send('{"roll":{"target":1998,"condition_high":true,"amount":1}}');
     } else if (obj["roll"]) {
         server_info.append(make_chat_entry("", msg));
         if (obj["roll"]["success"] === true) {
@@ -136,7 +190,7 @@ game_sock.onmessage = function(evt) {
     }
 };
 
-chat_sock.onopen = function() {
+function on_chatsock_open() {
     console.log("Connection to chat server established");
 
     var username = localStorage.getItem('username');
@@ -150,7 +204,7 @@ chat_sock.onopen = function() {
     server_info.append(item);
 };
 
-chat_sock.onmessage = function(evt) {
+function on_chatsock_message(evt) {
     var msg = JSON.stringify(evt.data);
     var obj = JSON.parse(evt.data);
 
