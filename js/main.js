@@ -126,8 +126,9 @@ game_sock.onmessage = function(evt) {
         game_sock.send('{"roll":{"target":1998,"condition_high":true,"amount":1}}');
     } else if (obj["roll"]) {
         server_info.append(make_chat_entry("", msg));
-        //if (obj["roll"]["success"] === true)
-        //    game_sock.send('{"roll":{"target":1998,"condition_high":true,"amount":1}}');
+        if (obj["roll"]["success"] === true) {
+            //game_sock.send('{"roll":{"target":1998,"condition_high":true,"amount":1}}');
+        }
     } else {
         console.log("other", obj);
         var item = make_chat_entry("", msg, new Date().toLocaleString());
@@ -352,31 +353,33 @@ $("#betcol #rolllo").on("click", function() {
 });
 
 
-$('.navbar-brand').on("click", function(){
-	showNotification("info", "test");
+$('.navbar-brand').on("click", function() {
+    showNotification("info", "test");
 });
 
 //notification
-function showNotification(type, message){
-	$.notify({
-	// options
-	message: message, 
-	newest_on_top: true
-},{
-	// settings
-	type: type //success,danger,info, warning
-});
+function showNotification(type, message) {
+    $.notify(
+        {
+            // options
+            message: message, 
+	    newest_on_top: true
+        }, {
+	    // settings
+            type: type //success,danger,info, warning
+        }
+    );
 }
 
-function removeFromChat(channel, id){
-	$('#' + channel  + ' #'+id).remove();
+function removeFromChat(channel, id) {
+    $('#' + channel  + ' #'+id).remove();
 }
 
-function removeFromBets(betid){
-	$('#bets-table #' + betid).remove();
+function removeFromBets(betid) {
+    $('#bets-table #' + betid).remove();
 }
 
 $(".open-modal-bets").click(function () {
-        $('#bet-modal-title').html("TEST");
-    });
+    $('#bet-modal-title').html("TEST");
+});
 
