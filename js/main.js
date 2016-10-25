@@ -334,7 +334,7 @@ $("#btnsbet #double").on("click", function() {
 
 
 //Winchance - Multiplier 
-var edge = 1 / 100;
+var edge = 0;
 
 $("#betcol #multiplier").numeric();
 $("#betcol #winchance").numeric();
@@ -347,19 +347,31 @@ calculateWinchanceMultiplier($('#betcol #winchance').val());
 $("#betcol #winchance").on("keyup", function() {
     $("#betcol #multiplier").val(calculateWinchanceMultiplier($(this).val()));
     calculateOverUnder($(this).val());
+    
 });
 
 $("#betcol #multiplier").on("keyup", function() {
     $("#betcol #winchance").val(calculateWinchanceMultiplier($(this).val()));
-    calculateOverUnder($('#betcol #winchance').val());
+    //calculateOverUnder($('#betcol #winchance').val());
+    calculateOverUnder($(this).val());
 });
+
+function round_to_precision(value, precision) {
+    var power = Math.pow(10, precision);
+    return Math.floor(value*power)/power;
+}
+
+function get_payout(chance, edge) {
+    return round_to_precision(100/chance*(1.0-edge), 10);
+}
 
 function calculateOverUnder(winchance) {
     rollunder_.html(winchance);
     rollover_.html((99.99 - winchance).toFixed(2));
 }
 
-function calculateWinchanceMultiplier(input) {
+function calculateWinchanceMultiplier(input, edge) {
+    
     var wm = 100 / input;
     var edgedwm = (wm - wm * edge).toFixed(2);
     console.log(wm);
