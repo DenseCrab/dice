@@ -334,7 +334,9 @@ $("#btnsbet #double").on("click", function() {
 
 
 //Winchance - Multiplier 
-var edge = 0;
+var edge = 1;
+var curr_chance = 50.0;
+var curr_payout = get_payout(curr_chance, edge);
 
 $("#betcol #multiplier").numeric();
 $("#betcol #winchance").numeric();
@@ -342,18 +344,18 @@ $("#betcol #winchance").numeric();
 var rollover_ = $('#rollover_');
 var rollunder_ = $('#rollunder_');
 calculateOverUnder($('#betcol #winchance').val());
-calculateWinchanceMultiplier($('#betcol #winchance').val());
+$("#betcol #multiplier").val(get_payout($('#betcol #winchance').val(), edge));
 
 $("#betcol #winchance").on("keyup", function() {
-    $("#betcol #multiplier").val(calculateWinchanceMultiplier($(this).val()));
-    calculateOverUnder($(this).val());
     
+    $("#betcol #multiplier").val(get_payout($(this).val(), edge));
+    calculateOverUnder($(this).val());
 });
 
 $("#betcol #multiplier").on("keyup", function() {
-    $("#betcol #winchance").val(calculateWinchanceMultiplier($(this).val()));
+    $("#betcol #winchance").val(get_chance($(this).val(), edge));
     //calculateOverUnder($('#betcol #winchance').val());
-    calculateOverUnder($(this).val());
+    calculateOverUnder($('#betcol #winchance').val());
 });
 
 function round_to_precision(value, precision) {
@@ -362,21 +364,28 @@ function round_to_precision(value, precision) {
 }
 
 function get_payout(chance, edge) {
-    return round_to_precision(100/chance*(1.0-edge), 10);
+    var payout = round_to_precision(100/chance*(1-edge), 10);
+    console.log('get_payout', 'chance ' + chance, 'payout ' + payout, 'edge ' + edge);
+    return payout;
+}
+
+function get_chance(payout, edge) {
+    var chance = 0;
+    if (edge > 0) {
+        chance = 1-(1-(1/payout)*(100-edge));
+    } else {
+        chance = 1-(1-(1/payout)*100);
+    }
+
+    chance = Math.round(chance*100)/100;
+
+    console.log('get_chance', 'chance ' + chance, 'payout ' + payout, 'edge ' + edge);
+    return chance;
 }
 
 function calculateOverUnder(winchance) {
     rollunder_.html(winchance);
     rollover_.html((99.99 - winchance).toFixed(2));
-}
-
-function calculateWinchanceMultiplier(input, edge) {
-    
-    var wm = 100 / input;
-    var edgedwm = (wm - wm * edge).toFixed(2);
-    console.log(wm);
-    console.log(edgedwm);
-    return edgedwm;
 }
 
 //table bets
