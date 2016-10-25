@@ -346,8 +346,7 @@ var rollunder_ = $('#rollunder_');
 calculateOverUnder($('#betcol #winchance').val());
 $("#betcol #multiplier").val(get_payout($('#betcol #winchance').val(), edge));
 
-$("#betcol #winchance").on("keyup", function() {
-    
+$("#betcol #winchance").on("keyup", function() { 
     $("#betcol #multiplier").val(get_payout($(this).val(), edge));
     calculateOverUnder($(this).val());
 });
@@ -364,7 +363,9 @@ function round_to_precision(value, precision) {
 }
 
 function get_payout(chance, edge) {
-    var payout = round_to_precision(100/chance*(1-edge), 10);
+    var payout = 1/chance*(100-edge);
+    payout = round_to_precision(payout, 10);
+
     console.log('get_payout', 'chance ' + chance, 'payout ' + payout, 'edge ' + edge);
     return payout;
 }
@@ -372,11 +373,10 @@ function get_payout(chance, edge) {
 function get_chance(payout, edge) {
     var chance = 0;
     if (edge > 0) {
-        chance = 1-(1-(1/payout)*(100-edge));
+        chance = (1/payout)*(100-edge);
     } else {
-        chance = 1-(1-(1/payout)*100);
+        chance = (1/payout)*100;
     }
-
     chance = Math.round(chance*100)/100;
 
     console.log('get_chance', 'chance ' + chance, 'payout ' + payout, 'edge ' + edge);
