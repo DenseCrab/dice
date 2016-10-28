@@ -177,11 +177,11 @@ function on_gamesock_message(evt) {
     if (obj["auth"]) {
         var auth_res = obj["auth"]["success"] === true ? "success" : "failure";
         server_info.append(make_chat_entry("", "Authentication " + auth_res));
-        config.game_sock.send('{"roll":{"target":1998,"condition_high":true,"amount":1}}');
+        if (obj["auth"]["success"] === true) {
+        }
     } else if (obj["roll"]) {
-        server_info.append(make_chat_entry("", msg));
+        //server_info.append(make_chat_entry("", msg));
         if (obj["roll"]["success"] === true) {
-            //game_sock.send('{"roll":{"target":1998,"condition_high":true,"amount":1}}');
         }
     } else {
         console.log("other", obj);
@@ -353,7 +353,6 @@ $("#betcol #winchance").on("keyup", function() {
 
 $("#betcol #multiplier").on("keyup", function() {
     $("#betcol #winchance").val(get_chance($(this).val(), edge));
-    //calculateOverUnder($('#betcol #winchance').val());
     calculateOverUnder($('#betcol #winchance').val());
 });
 
