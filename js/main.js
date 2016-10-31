@@ -479,3 +479,27 @@ $(".open-modal-bets").click(function () {
     $('#bet-modal-title').html("TEST");
 });
 
+
+
+//Login
+$("#btn-login").on("click", function(){
+	if(login($("#username").val(), $("#password").val(), $("#2fa").val())){
+		window.location.href= "index.html";
+	}
+});
+
+//Register
+$("#btn-register").on("click", function(){
+	
+	if(register($("#username").val(), $("#password").val(),$("#confirm").val(), $("#2fa").val())){
+		window.location.href= "index.html";
+	}
+});
+
+function login(user, pw, twofa){
+	return true;
+}
+
+function register(user, pw, confpw, twofa){
+	return true;
+}
