@@ -327,7 +327,7 @@ $("#arrow").on("click", function() {
 
 //MINMAXSHIT
 $("#btnsbet #max").on("click", function() {
-    $("#betcol #bet").val($("#betcol #bal").html());
+    $("#betcol #bet").val($("#betcol #bal").text());
 });
 
 $("#btnsbet #min").on("click", function() {
