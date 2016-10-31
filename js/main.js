@@ -181,8 +181,16 @@ function on_gamesock_message(evt) {
         if (obj["auth"]["success"] === true) {
         }
     } else if (obj["roll"]) {
-        //server_info.append(make_chat_entry("", msg));
         if (obj["roll"]["success"] === true) {
+            make_bet_table_entry(obj["roll"]["username"],
+                obj["roll"]["bet_id"], 
+                obj["roll"]["condition_high"], 
+                obj["roll"]["amount"],
+                obj["roll"]["balance"],
+                obj["roll"]["profit"], 
+                obj["roll"]["target"], 
+                obj["roll"]["roll"]
+            );
         }
     } else {
         console.log("other", obj);
@@ -393,8 +401,8 @@ function make_bet_table_entry(username, bet_id, condition_high, amount, balance,
     var time = dt.getHours() + ":" + dt.getMinutes();
 
     $("#bets tbody").prepend(
-        "<tr id='" + betid + "'>" +
-        '<td><a class="open-modal clickable" data-toggle="modal" data-target="#myModal">' + betid + "</a></td>" +
+        "<tr id='" + bet_id + "'>" +
+        '<td><a class="open-modal clickable" data-toggle="modal" data-target="#myModal">' + bet_id + "</a></td>" +
         "<td>" + username + "</td>" +
         "<td>" + time + "</td>" +
         "<td>" + $("#betcol #bet").val() + "</td>" +
