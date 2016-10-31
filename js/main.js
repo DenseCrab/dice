@@ -426,7 +426,7 @@ $("#betcol #rollhi").on("click", function() {
         make_bet_table_entry("DenseCrab", betid, true, $("#betcol #bet").val(), balance, (0.1).toFixed(8), target, roll);
     } else {
         config.game_sock.send('{"roll":{"condition_high":true,"target":' 
-            + $("#betcol #winchance").val() 
+            + $("#betcol #winchance").val()*100 
             + ',"amount":' + Math.round($("#betcol #bet").val()*1e8) + '}}'
         );
     }
