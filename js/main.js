@@ -182,6 +182,7 @@ function on_gamesock_message(evt) {
         }
     } else if (obj["roll"]) {
         if (obj["roll"]["success"] === true) {
+            $("#betcol #bal").html('<b>' + (obj["roll"]["balance"]/1e8).toFixed(8) + '<b>');
             make_bet_table_entry(obj["roll"]["username"],
                 obj["roll"]["bet_id"], 
                 obj["roll"]["condition_high"], 
@@ -193,7 +194,7 @@ function on_gamesock_message(evt) {
             );
         }
     } else {
-        console.log("other", obj);
+        console.log("other", msg);
         var item = make_chat_entry("", msg, new Date().toLocaleString());
         server_info.append(item);
     }
