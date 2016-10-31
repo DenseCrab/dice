@@ -491,7 +491,7 @@ $("#btn-login").on("click", function(){
 //Register
 $("#btn-register").on("click", function(){
 	
-	if(login($("#username").val(), $("#password").val(),$("#confirm").val(), $("#2fa").val())){
+	if(register($("#username").val(), $("#password").val(),$("#confirm").val(), $("#2fa").val())){
 		window.location.href= "index.html";
 	}
 });
