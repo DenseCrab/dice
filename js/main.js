@@ -126,8 +126,9 @@ if (settings === null) {
     if (config.demo_mode === demo_modes.local) {
         console.log('local demo enabled');
 
-        // Generation content
+        // Generate content for local developer mode here
         // ...
+
 
     } else {
         console.log('production demo enabled');
@@ -387,43 +388,55 @@ function calculateOverUnder(winchance) {
     rollover_.html((99.99 - winchance).toFixed(2));
 }
 
-//table bets
-$("#betcol #rollhi").on("click", function() {
+function make_bet_table_entry(username, bet_id, condition_high, amount, balance, profit, target, roll) {
     var dt = new Date();
     var time = dt.getHours() + ":" + dt.getMinutes();
-	var betid = Math.floor(Math.random() * 10000000) + 1;
-	
+
     $("#bets tbody").prepend(
-        "<tr id='" + betid + "'>" + 
+        "<tr id='" + betid + "'>" +
         '<td><a class="open-modal clickable" data-toggle="modal" data-target="#myModal">' + betid + "</a></td>" +
-        "<td>" + "DenseCrab" + "</td>" +
+        "<td>" + username + "</td>" +
         "<td>" + time + "</td>" +
         "<td>" + $("#betcol #bet").val() + "</td>" +
         "<td>" + $("#betcol #multiplier").val() + "x</td>" +
-        "<td>" + "> " + $('#rollover_').html() + "</td>" +
-        "<td>" + (Math.random() * (99.99)).toFixed(2) + "</td>" +
-        "<td>" + "kwet" + "</td>" +
+        "<td>" + (condition_high ? "> " : "< ") + $('#rollover_').html() + "</td>" +
+        "<td>" + roll + "</td>" +
+        "<td>" + profit + "</td>" +
         "</tr>"
-    )
+    );
+}
+
+//table bets
+$("#betcol #rollhi").on("click", function() {
+    if (config.demo_mode == demo_modes.local) {
+        var betid = Math.floor(Math.random() * 10000000) + 1;
+        var balance = 0;
+        var target = (Math.random() * 99.99)*100;
+        var roll = (Math.random() * 99.99)*100;
+
+        make_bet_table_entry("DenseCrab", betid, true, $("#betcol #bet").val(), balance, (0.1).toFixed(8), target, roll);
+    } else {
+        config.game_sock.send('{"roll":{"condition_high":true,"target":' 
+            + $("#betcol #winchance").val() 
+            + ',"amount":' + Math.round($("#betcol #bet").val()*1e8) + '}}'
+        );
+    }
 });
 
 $("#betcol #rolllo").on("click", function() {
-    var dt = new Date();
-    var time = dt.getHours() + ":" + dt.getMinutes();
-	var betid = Math.floor(Math.random() * 10000000) + 1;
-	
-    $("#bets tbody").prepend(
-        "<tr id='" + betid + "'>" + 
-        '<td><a class="open-modal-bets clickable" data-toggle="modal" data-id="'+ betid + '" data-target="#myModal">' + betid + "</a></td>" +
-        "<td>" + "DenseCrab" + "</td>" +
-        "<td>"  + time  + "</td>" +
-        "<td>" + $("#betcol #bet").val() + "</td>" +
-        "<td>" + $("#betcol #multiplier").val() + "x</td>" +
-        "<td>" + "< " + $('#rollunder_').html() + "</td>" +
-        "<td>" + (Math.random() * (99.99)).toFixed(2) + "</td>" +
-        "<td>" + "kwet" + "</td>" +
-        "</tr>"
-    )
+    if (config.demo_mode == demo_modes.local) {
+        var betid = Math.floor(Math.random() * 10000000) + 1;
+        var balance = 0;
+        var target = (Math.random() * 99.99)*100;
+        var roll = (Math.random() * 99.99)*100;
+
+        make_bet_table_entry("DenseCrab", betid, true, $("#betcol #bet").val(), balance, (0.1).toFixed(8), target, roll);
+    } else {
+        config.game_sock.send('{"roll":{"condition_high":false,"target":'
+            + $("#betcol #winchance").val()*100
+            + ',"amount":' + Math.round($("#betcol #bet").val()*1e8) + '}}'
+        );
+    }
 });
 
 
