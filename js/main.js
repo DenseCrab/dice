@@ -392,6 +392,17 @@ function get_chance(payout, edge) {
     return chance;
 }
 
+function target_to_chance(condition_high, target) {
+    var chance = 0;
+    if (condition_high) {
+        chance = (10000-target)/100;
+    } else {
+        chance = target/100;
+    }
+
+    return chance;
+}
+
 function calculateOverUnder(winchance) {
     rollunder_.html(winchance);
     rollover_.html((99.99 - winchance).toFixed(2));
@@ -406,9 +417,9 @@ function make_bet_table_entry(username, bet_id, condition_high, amount, balance,
         '<td><a class="open-modal clickable" data-toggle="modal" data-target="#myModal">' + bet_id + "</a></td>" +
         "<td>" + username + "</td>" +
         "<td>" + time + "</td>" +
-        "<td>" + $("#betcol #bet").val() + "</td>" +
-        "<td>" + $("#betcol #multiplier").val() + "x</td>" +
-        "<td>" + (condition_high ? "> " : "< ") + $('#rollover_').html() + "</td>" +
+        "<td>" + amount + "</td>" +
+        "<td>" + get_payout(target_to_chance(condition_high, target), edge) + "X</td>" +
+        "<td>" + (condition_high ? "> " : "< ") + target + "</td>" +
         "<td>" + roll + "</td>" +
         "<td>" + profit + "</td>" +
         "</tr>"
